@@ -1,0 +1,16 @@
+<!ELEMENT j8583cn-config ( header+, template+, parseinfo+ ) >
+
+<!ELEMENT header ( #PCDATA ) >
+<!ATTLIST header length NMTOKEN #REQUIRED >
+
+<!ELEMENT template ( field+ ) >
+<!ATTLIST template msgtypeid NMTOKEN #REQUIRED >
+
+<!ELEMENT parseinfo ( field+ ) >
+<!ATTLIST parseinfo msgtypeid NMTOKEN #REQUIRED >
+
+<!ELEMENT field ( #PCDATA ) >
+<!ATTLIST field id NMTOKEN #REQUIRED >
+<!ATTLIST field datatype ( ALPHA | NUMERIC | AMOUNT | DATE10 | DATE4 | DATE_EXP | TIME | LLVAR | LLLVAR ) #REQUIRED >
+<!ATTLIST field length NMTOKEN #IMPLIED >
+

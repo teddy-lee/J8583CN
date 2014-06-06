@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE j8583cn-config PUBLIC "-//J8583CN//DTD CONFIG 1.0//EN"
+	"http://j8583cn.sourceforge.net/j8583cn.dtd"> -->
+<j8583cn-config>
+
+<!-- These are the 8583 headers to be prepended to the message types specified -->
+<!-- length属性表示该报文头的应该长度， "0200"为该报文类型ID-->
+<header length="10">0200</header>
+<header length="10">0210</header>
+
+<!-- The client example uses this to create requests -->
+<template msgtypeid="0200">
+	<field id="3" datatype="NUMERIC" length="6">650000</field>
+	<field id="32" datatype="LLVAR">456</field>
+	<field id="35" datatype="LLVAR">4591700012340000=</field>
+	<field id="43" datatype="ALPHA" length="40">ZYPTEST_TEST-3DFMX</field>
+	<field id="49" datatype="ALPHA" length="3">484</field>
+	<field id="60" datatype="LLLVAR">B456PRO1+000</field>
+	<field id="61" datatype="LLLVAR">some1234P_some1234P_some1234P_some1234P</field>
+	<field id="100" datatype="LLVAR">999</field>
+	<field id="102" datatype="LLVAR">ABCD</field>
+</template>
+
+<!-- The server example uses this to create the responses
+	we only need a few fields because the rest are copied from the request -->
+<template msgtypeid="0210">
+	<field id="60" datatype="LLLVAR">Fixed data from template</field>
+	<field id="70" datatype="ALPHA" length="3">ABC</field>
+	<field id="90" datatype="ALPHA" length="42">Field of length 42</field>
+	<field id="100" datatype="LLVAR">Fixed field</field>
+	<field id="102" datatype="LLVAR">Another fixed field</field>
+	<field id="126" datatype="LLLVAR">.and yet another fixed field.</field>
+</template>
+
+<!-- The server example uses this to read the requests (解析报文配置，凡该类型的报文所有可能出现的域，都应该列出)-->
+<parseinfo msgtypeid="0200">
+	<field id="3" datatype="NUMERIC" length="6" />
+	<field id="4" datatype="AMOUNT" />
+	<field id="7" datatype="DATE10" />
+	<field id="11" datatype="NUMERIC" length="6" />
+	<field id="12" datatype="TIME" />
+	<field id="13" datatype="DATE4" />
+	<field id="15" datatype="DATE4" />
+	<field id="17" datatype="DATE_EXP" />
+	<field id="32" datatype="LLVAR" />
+	<field id="35" datatype="LLVAR" />
+	<field id="37" datatype="NUMERIC" length="12" />
+	<field id="41" datatype="ALPHA" length="16" />
+	<field id="43" datatype="ALPHA" length="40" />
+	<field id="48" datatype="LLLVAR" />
+	<field id="49" datatype="ALPHA" length="3" />
+	<field id="60" datatype="LLLVAR" />
+	<field id="61" datatype="LLLVAR" />
+	<field id="100" datatype="LLVAR" />
+	<field id="102" datatype="LLVAR" />
+</parseinfo>
+
+<!-- The client example uses this to read the responses (解析报文配置，凡该类型的报文所有可能出现的域，都应该列出)-->
+<parseinfo msgtypeid="0210">
+	<field id="3" datatype="NUMERIC" length="6" />
+	<field id="4" datatype="AMOUNT" />
+	<field id="7" datatype="DATE10" />
+	<field id="11" datatype="NUMERIC" length="6" />
+	<field id="12" datatype="TIME" />
+	<field id="13" datatype="DATE4" />
+	<field id="15" datatype="DATE4" />
+	<field id="17" datatype="DATE_EXP" />
+	<field id="32" datatype="LLVAR" />
+	<field id="35" datatype="LLVAR" />
+	<field id="37" datatype="NUMERIC" length="12" />
+	<field id="38" datatype="NUMERIC" length="6" />
+	<field id="39" datatype="NUMERIC" length="2" />
+	<field id="41" datatype="ALPHA" length="16" />
+	<field id="43" datatype="ALPHA" length="40" />
+	<field id="48" datatype="LLLVAR" />
+	<field id="49" datatype="ALPHA" length="3" />
+	<field id="60" datatype="LLLVAR" />
+	<field id="61" datatype="LLLVAR" />
+	<field id="70" datatype="ALPHA" length="3" />
+	<field id="90" datatype="ALPHA" length="42" />
+	<field id="100" datatype="LLVAR" />
+	<field id="102" datatype="LLVAR" />
+	<field id="126" datatype="LLLVAR" />
+</parseinfo>
+
+</j8583cn-config>

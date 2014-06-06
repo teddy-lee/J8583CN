@@ -1,0 +1,54 @@
+<project name="J8583CN" default="all">
+
+<target name="all" depends="build,jar,javadoc,pack" />
+
+<target name="build">
+	<mkdir dir="bin" />
+	<javac srcdir="src" destdir="bin"
+			includes="**/*.java">
+		<classpath>
+			<fileset dir="lib" includes="*.jar" />
+		</classpath>
+	</javac>
+</target>
+
+<target name="javadoc">
+	<mkdir dir="docs/api" />
+	<javadoc access="protected" author="true"
+			classpath="lib/commons-logging-1.1.1.jar"
+			destdir="docs/api" doctitle="J8583CN Framework API Documentation"
+			nodeprecated="false" nodeprecatedlist="false" noindex="false"
+			nonavbar="false" notree="false"
+			packagenames="org.zyp.cn8583.impl,org.zyp.cn8583,org.zyp.cn8583.parse"
+			source="1.5" sourcepath="src"
+			splitindex="true" use="true" version="true">
+	</javadoc>
+</target>
+
+<target name="jar" depends="build">
+	<delete file="j8583cn_1.0.jar" />
+	<unzip src="lib/commons-logging-1.1.1.jar" dest="bin" />
+	<jar jarfile="j8583cn_1.0.jar" index="true">
+		<fileset dir="bin" includes="org/**/*.class" />
+	</jar>
+</target>
+
+<target name="pack" depends="jar,javadoc">
+	<delete file="../j8583cn_1.0.zip" />
+	<zip destfile="../j8583cn_1.0.zip"  encoding="GB2312">
+		<fileset dir="." includes="j8583cn_1.0.jar" />
+		<fileset dir="." includes="README.txt" />
+		<fileset dir="." includes="LGPL.txt" />
+		<fileset dir="." includes="docs/**" />
+		<fileset dir="." includes="example/**" />
+	</zip>
+</target>
+	
+<target name="eclipse_all_project" >
+	<delete file="j8583cn_eclipse_project_1.0.zip" />
+	<zip destfile="../j8583cn_eclipse_project_1.0.zip" encoding="GB2312">
+		<fileset dir=".." includes="J8583CN/**" />
+	</zip>
+</target>
+
+</project>
